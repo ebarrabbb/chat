@@ -24,14 +24,14 @@ import static util.Conf.APODO_SERVIDOR;
  * Palabra clave de finalización: /fin
  *
  * @author Eduardo Barra Balao
- * @version 0.3.1
+ * @version 0.3.1.2
  */
 public class ClienteChat {
     private String apodo;               // Apodo del cliente
     private InetAddress ipServidor;     // IP del servidor
     private int puertoServidor;         // Puerto del servidor
 
-    public ClienteChat(@NotNull String apodo, @NotNull InetAddress ipServidor, @NotNull int puertoServidor) {
+    public ClienteChat(@NotNull String apodo, @NotNull InetAddress ipServidor, int puertoServidor) {
         this.apodo = apodo;
         this.ipServidor = ipServidor;
         this.puertoServidor = puertoServidor;
@@ -70,7 +70,6 @@ public class ClienteChat {
                 BufferedReader entradaEstandar = new BufferedReader(new InputStreamReader(System.in))
         ) {
             String entradaUsuario;
-            String linea;
             while ((entradaUsuario = entradaEstandar.readLine()) != null) {
                 System.out.println(mensaje(apodo, entradaUsuario, socket));     // Mensaje del cliente por pantalla
                 salidaSocket.println(mensaje(apodo, entradaUsuario, socket));   // Mensaje del cliente al servidor
