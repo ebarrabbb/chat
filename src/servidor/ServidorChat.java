@@ -20,7 +20,7 @@ import static util.Conf.MIN_PUERTO;
  * Esta tarea la realiza el hilo asociado a un objeto GestorCliente.
  *
  * @author Eduardo Barra Balao
- * @version 0.3.1
+ * @version 0.3.1.1
  */
 public class ServidorChat {
     private int puerto;                                 // Puerto del servidor

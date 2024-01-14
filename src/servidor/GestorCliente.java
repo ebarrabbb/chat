@@ -20,8 +20,8 @@ public class GestorCliente implements Runnable {
     private Socket socket;
     private String apodoServidor;
 
-    public GestorCliente(@NotNull Socket clienteSocket, @NotNull String apodoServidor) {
-        this.socket = clienteSocket;
+    public GestorCliente(@NotNull Socket gestorClienteSocket, @NotNull String apodoServidor) {
+        this.socket = gestorClienteSocket;
         this.apodoServidor = apodoServidor;
     }
 
