@@ -17,12 +17,17 @@ public class Util {
         }
     }
 
-    public static String mensaje(@NotNull String apodo, @NotNull String mensaje, @NotNull Socket socket) {
+    public static String mensaje(@NotNull String apodo, @NotNull String mensaje, Socket socket) {
         // TODO: 17/12/2023 Agregar información sobre el socket antes del apodo: [ip:puerto]
         String ip = socket.getLocalAddress().getHostAddress();
         int puerto = socket.getLocalPort();
 
-        return String.format("[%s:%d] %s: %s", ip, puerto, apodo, mensaje);
+        String prefijo = socket==null ? "" : String.format("[%s:%d] ", ip, puerto);
+        return String.format("%s%s: %s", prefijo, apodo, mensaje);
+    }
+
+    public static String mensaje(@NotNull String apodo, @NotNull String mensaje) {
+        return mensaje(apodo, mensaje, null);
     }
 
     public static void uso(@NotNull String mensaje) {
@@ -47,4 +52,11 @@ public class Util {
         }
         return clazz.getSimpleName();
     }
+
+    public static String version(@NotNull String nombre, @NotNull String version) {
+        return String.format("%s %s", nombre, version);
+    }
+
+
+
 }

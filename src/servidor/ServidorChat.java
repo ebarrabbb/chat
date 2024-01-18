@@ -9,7 +9,8 @@ import static util.EchoError.ERROR_PUERTO_INVALIDO;
 import static util.Util.error;
 import static util.Conf.APODO_SERVIDOR;
 import static util.Conf.MIN_PUERTO;
-
+import static util.Conf.VERSION_SERVIDOR;
+import static util.Util.version;
 
 /**
  * Servidor Chat
@@ -19,7 +20,7 @@ import static util.Conf.MIN_PUERTO;
  * Esta tarea la realiza el hilo asociado a un objeto GestorCliente.
  *
  * @author Eduardo Barra Balao
- * @version 0.3.1.2
+ * @version 0.3.2
  */
 public class ServidorChat {
     private int puerto;                                 // Puerto del servidor
@@ -72,6 +73,7 @@ public class ServidorChat {
     public void iniciar() {
         int contador=0;
         try (ServerSocket servidorSocket = new ServerSocket(puerto)) {
+            System.out.println(version("ServidorChat", VERSION_SERVIDOR.s()));
             System.out.println("Servidor iniciado en puerto "+puerto);
             while (++contador<=maxClientes) {
                 Socket gestorClienteSocket = servidorSocket.accept();   // Esperando peticiones de conexión del cliente

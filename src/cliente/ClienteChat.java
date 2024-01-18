@@ -14,7 +14,9 @@ import util.Util;
 import static util.EchoError.ERROR_HOST_INVALIDO;
 import static util.Util.error;
 import static util.Util.mensaje;
+import static util.Util.version;
 import static util.Conf.APODO_SERVIDOR;
+import static util.Conf.VERSION_CLIENTE;
 
 /**
  * Cliente Chat
@@ -24,7 +26,7 @@ import static util.Conf.APODO_SERVIDOR;
  * Palabra clave de finalización: /fin
  *
  * @author Eduardo Barra Balao
- * @version 0.3.1.2
+ * @version 0.3.2
  */
 public class ClienteChat {
     private String apodo;               // Apodo del cliente
@@ -63,6 +65,7 @@ public class ClienteChat {
     }
 
     private void iniciar() throws IOException {
+        System.out.println(version("ClienteChat", VERSION_CLIENTE.s()));
         try (
                 Socket socket = new Socket(ipServidor, puertoServidor);
                 PrintWriter salidaSocket = new PrintWriter(socket.getOutputStream(), true);
@@ -72,7 +75,7 @@ public class ClienteChat {
             String entradaUsuario;
             while ((entradaUsuario = entradaEstandar.readLine()) != null) {
                 System.out.println(mensaje(apodo, entradaUsuario, socket));     // Mensaje del cliente por pantalla
-                salidaSocket.println(mensaje(apodo, entradaUsuario, socket));   // Mensaje del cliente al servidor
+                salidaSocket.println(mensaje(apodo, entradaUsuario));           // Mensaje del cliente al servidor
 
                 // Mostrar el mensaje del servidor por pantalla
                 System.out.println(mensaje(APODO_SERVIDOR.s(), entradaSocket.readLine(), socket));
